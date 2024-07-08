@@ -1,3 +1,4 @@
+import { useRouter } from "next/navigation";
 import React from "react";
 
 interface Container {
@@ -19,6 +20,12 @@ const ContainerList: React.FC<ContainerListProps> = ({
   onStop,
   onDelete,
 }) => {
+  const router = useRouter();
+
+  const handleRowClick = (id: string) => {
+    router.push(`/containers/detail`);
+  };
+
   return (
     <div className="container p-4 mx-auto text-black">
       <h1 className="mb-4 text-2xl font-bold">Docker Containers</h1>
@@ -33,7 +40,11 @@ const ContainerList: React.FC<ContainerListProps> = ({
         </thead>
         <tbody>
           {containers.map((container) => (
-            <tr key={container.id} className="border-t">
+            <tr
+              key={container.id}
+              className="border-t"
+              onClick={() => handleRowClick(container.id)}
+            >
               <td className="py-2 text-center">{container.id}</td>
               <td className="py-2 text-center">{container.name}</td>
               <td className="py-2 text-center">{container.status}</td>
