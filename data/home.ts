@@ -17,14 +17,14 @@ export const HOME_ROUTER = [
     id: 2,
     label: "Create Network",
     router: "/networks",
-    bgColor: "bg-purple-500",
+    bgColor: "bg-yellow-500",
     hoverColor: "hover:bg-purple-700",
   },
   {
     id: 3,
     label: "Create Volume",
     router: "/volumes",
-    bgColor: "bg-orange-500",
+    bgColor: "bg-red-500",
     hoverColor: "hover:bg-orange-700",
   },
 ];
