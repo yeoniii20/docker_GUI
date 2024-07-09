@@ -2,13 +2,13 @@
 
 import { useRouter } from "next/navigation";
 import React from "react";
-import { NetworkListProps } from "../../../../types/networks.ts";
+import { NetworkListProps } from "../../../../types/networks";
 
 const NetworkList: React.FC<NetworkListProps> = ({ networks, onDelete }) => {
   const router = useRouter();
 
   const handleRowClick = (id: string) => {
-    router.push(`/network/${id}`);
+    router.push(`/networks/${id}`);
   };
 
   return (
