@@ -12,7 +12,7 @@ export default function NetworkDetail({
   const router = useRouter();
 
   const handleBack = () => {
-    router.push(`/network`);
+    router.push(`/networks`);
   };
 
   return (
