@@ -1,2 +1,2 @@
 # docker_GUI
-docker GUIfmf web으로 구현했습니다.
+docker GUI를 web으로 구현했습니다.
