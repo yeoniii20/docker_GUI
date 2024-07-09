@@ -2,12 +2,10 @@
 
 import ContainerList from "@/app/components/containers/containerList";
 import { useState } from "react";
+import { CONTAINER_LIST_DATA } from "../../../../data/containers";
 
 const Home = () => {
-  const [containers, setContainers] = useState([
-    { id: "1", name: "web", status: "running" },
-    { id: "2", name: "db", status: "stopped" },
-  ]);
+  const [containers, setContainers] = useState(CONTAINER_LIST_DATA);
 
   const handleStart = (id: string) => {
     setContainers(
