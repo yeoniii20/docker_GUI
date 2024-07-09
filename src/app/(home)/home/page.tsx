@@ -6,7 +6,7 @@ import { HOME_ROUTER } from "../../../../data/home";
 import QuickActions from "@/app/components/home/quickActions";
 import RecentActivity from "@/app/components/home/recentActivity";
 import ResourceUsage from "@/app/components/home/resourceUsage";
-import SystemOverView from "@/app/components/home/systemOverview";
+import SystemOverView from "@/app/components/home/systemOverView";
 
 const Home: React.FC = () => {
   const router = useRouter();
