@@ -2,14 +2,8 @@
 
 import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
-
-interface Container {
-  id: string;
-  name: string;
-  status: string;
-  createdAt: string;
-  imageName: string;
-}
+import { CONTAINER_DETAIL_DATA } from "../../../../../data/containers";
+import { ContainerDetailTypes } from "../../../../../types/containers";
 
 export default function ContainerDetail({
   params,
@@ -17,18 +11,10 @@ export default function ContainerDetail({
   params: { slug: string };
 }) {
   const router = useRouter();
-  const [container, setContainer] = useState<Container | null>(null);
+  const [container, setContainer] = useState<ContainerDetailTypes | null>(null);
 
   useEffect(() => {
-    // 실제 API 호출 대신 임시 데이터 사용
-    const tempData: Container = {
-      id: "example_id",
-      name: "example_container",
-      status: "running",
-      createdAt: "2023-07-09T12:00:00Z",
-      imageName: "example_image",
-    };
-    setContainer(tempData);
+    setContainer(CONTAINER_DETAIL_DATA);
   }, []);
 
   if (!container) {
