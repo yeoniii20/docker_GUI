@@ -21,7 +21,7 @@ const LeftMenu: React.FC<LeftMenuProps> = ({ isOpen }) => {
       <aside
         className={`fixed inset-y-0 left-0 w-64 bg-gray-200 p-4 transform ${
           isOpen ? "translate-x-0" : "-translate-x-full"
-        } transition-transform duration-300 ease-in-out lg:translate-x-0 lg:static z-20`}
+        } transition-transform duration-300 ease-in-out lg:translate-x-0 lg:static z-9 `}
       >
         <nav className="space-y-4 mt-16 lg:mt-0">
           {MENU_ITEMS.map((item) => (
