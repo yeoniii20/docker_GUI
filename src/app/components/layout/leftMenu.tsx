@@ -16,6 +16,13 @@ const LeftMenu: React.FC<LeftMenuProps> = ({ isOpen }) => {
     router.push(path);
   };
 
+  const isActive = (path: string) => {
+    if (path === "/") {
+      return pathname === "/";
+    }
+    return pathname.startsWith(path);
+  };
+
   return (
     <>
       <aside
@@ -28,7 +35,7 @@ const LeftMenu: React.FC<LeftMenuProps> = ({ isOpen }) => {
             <div
               key={item.path}
               className={`block py-2 px-4 rounded cursor-pointer ${
-                pathname === item.path
+                isActive(item.path)
                   ? "bg-blue-400 text-white"
                   : "text-gray-700 hover:bg-gray-300"
               }`}
