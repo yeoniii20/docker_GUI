@@ -1,18 +1,6 @@
 import { useRouter } from "next/navigation";
 import React from "react";
-
-interface Container {
-  id: string;
-  name: string;
-  status: string;
-}
-
-interface ContainerListProps {
-  containers: Container[];
-  onStart: (id: string) => void;
-  onStop: (id: string) => void;
-  onDelete: (id: string) => void;
-}
+import { ContainerListProps } from "../../../../types/containers";
 
 const ContainerList: React.FC<ContainerListProps> = ({
   containers,
