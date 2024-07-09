@@ -2,7 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import React from "react";
-import { NetworkListProps } from "../../../../types/networks";
+import { NetworkListProps } from "../../../../types/networks.ts";
 
 const NetworkList: React.FC<NetworkListProps> = ({ networks, onDelete }) => {
   const router = useRouter();
