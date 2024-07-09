@@ -16,7 +16,7 @@ const Header: React.FC<HeaderProps> = ({ toggleMenu }) => {
   };
 
   return (
-    <header className="bg-blue-600 p-4 text-white fixed w-full z-100">
+    <header className="bg-blue-600 p-4 text-white fixed w-full z-10">
       <div className="container ml-auto flex justify-end items-center">
         {/* <h1 className="text-2xl font-bold">Docker Dashboard</h1> */}
         <nav className="space-x-4 flex items-center">
