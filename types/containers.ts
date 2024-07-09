@@ -17,4 +17,8 @@ export interface ContainerDetailTypes {
   status: string;
   createdAt: string;
   imageName: string;
+  ports: any[];
+  mounts: any[];
+  env: any;
+  logs: string;
 }
