@@ -6,13 +6,31 @@ export type DockerImage = {
   tag: string;
 };
 
-export const IMAGE_DATA: DockerImageDetail = {
-  id: "image 1",
-  name: "nginx",
-  tag: "latest",
-  createdAt: "2021-07-01T12:34:56Z",
-  size: "133MB",
-};
+export const IMAGE_DATA: DockerImageDetail[] = [
+  {
+    id: "1",
+    name: "nginx",
+    tag: "latest",
+    description: "Official build of Nginx.",
+    createdAt: "2023-07-08",
+    size: "133MB",
+    repository: "nginx",
+    dockerVersion: "20.10.7",
+    author: "NGINX, Inc.",
+    labels: {
+      maintainer: "NGINX Docker Maintainers <docker-maint@nginx.com>",
+    },
+    architecture: "amd64",
+    os: "linux",
+    ports: ["80", "443"],
+    environmentVariables: {
+      NGINX_VERSION: "1.21.0",
+      NJS_VERSION: "0.5.3",
+      PKG_RELEASE: "1",
+    },
+    volumes: ["/var/cache/nginx"],
+  },
+];
 
 export const IMAGES = [
   {
