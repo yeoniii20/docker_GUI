@@ -23,7 +23,8 @@ const ContainerList: React.FC<ContainerListProps> = ({
   const router = useRouter();
 
   const handleRowClick = (id: string) => {
-    router.push(`/containers/detail`);
+    // router.push(`/containers/detail`);
+    router.push(`/containers/${id}`);
   };
 
   return (
