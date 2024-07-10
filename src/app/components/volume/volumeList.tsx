@@ -3,11 +3,12 @@
 import React from "react";
 import { useRouter } from "next/navigation";
 import { VOLUMES_DATA } from "../../../../data/volumes";
+import { FaTrash, FaHdd, FaInfoCircle } from "react-icons/fa";
 
 const VolumeList: React.FC = () => {
   const router = useRouter();
 
-  const handleRowClick = (id: string) => {
+  const handleCardClick = (id: string) => {
     router.push(`/volumes/${id}`);
   };
 
@@ -18,42 +19,44 @@ const VolumeList: React.FC = () => {
   return (
     <div className="container mx-auto p-4">
       <h1 className="text-3xl font-bold text-center mb-6">Docker Volumes</h1>
-      <table className="min-w-full bg-white">
-        <thead>
-          <tr>
-            <th className="py-2">ID</th>
-            <th className="py-2">Name</th>
-            <th className="py-2">Driver</th>
-            <th className="py-2">Mountpoint</th>
-            <th className="py-2">Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          {VOLUMES_DATA.map((volume) => (
-            <tr
-              key={volume.id}
-              className="border-t hover:bg-gray-100"
-              onClick={() => handleRowClick(volume.id)}
-            >
-              <td className="py-2 text-center">{volume.id}</td>
-              <td className="py-2 text-center">{volume.name}</td>
-              <td className="py-2 text-center">{volume.driver}</td>
-              <td className="py-2 text-center">{volume.mountpoint}</td>
-              <td className="py-2 space-x-2 text-center">
-                <button
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    handleDelete(volume.id);
-                  }}
-                  className="px-2 py-1 text-white bg-red-500 rounded hover:bg-red-700"
-                >
-                  Delete
-                </button>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+        {VOLUMES_DATA.map((volume) => (
+          <div
+            key={volume.id}
+            className="relative p-4 bg-white border rounded shadow cursor-pointer hover:shadow-lg"
+            onClick={() => handleCardClick(volume.id)}
+          >
+            <div className="mb-2 text-xl font-bold text-center flex items-center justify-center space-x-2">
+              <FaHdd className="text-gray-600" />
+              <span>{volume.name}</span>
+            </div>
+            <div className="mb-2 text-gray-700 flex items-center space-x-2">
+              <FaInfoCircle className="text-gray-600" />
+              <span>ID: {volume.id}</span>
+            </div>
+            <div className="mb-2 text-gray-700 flex items-center space-x-2">
+              <FaInfoCircle className="text-gray-600" />
+              <span>Driver: {volume.driver}</span>
+            </div>
+            <div className="mb-4 text-gray-700 flex items-center space-x-2">
+              <FaInfoCircle className="text-gray-600" />
+              <span>Mountpoint: {volume.mountpoint}</span>
+            </div>
+            <div className="flex justify-center space-x-2">
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  handleDelete(volume.id);
+                }}
+                className="px-3 py-2 text-white bg-red-500 rounded-full hover:bg-red-700 flex items-center space-x-1"
+              >
+                <FaTrash />
+                <span>Delete</span>
+              </button>
+            </div>
+          </div>
+        ))}
+      </div>
     </div>
   );
 };
