@@ -20,7 +20,7 @@ const ContainerList: React.FC<ContainerListProps> = ({
   return (
     <div className="container p-4 mx-auto text-black">
       <h1 className="mb-4 text-2xl font-bold">Docker Containers</h1>
-      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3">
         {containers.map((container) => (
           <div
             key={container.id}
