@@ -16,10 +16,15 @@ const Header: React.FC<HeaderProps> = ({ toggleMenu }) => {
   };
 
   return (
-    <header className="bg-blue-600 p-4 text-white fixed w-full z-10">
-      <div className="container ml-auto flex justify-end items-center">
-        {/* <h1 className="text-2xl font-bold">Docker Dashboard</h1> */}
-        <nav className="space-x-4 flex items-center">
+    <header className="bg-blue-600 py-4 pl-4 text-white fixed w-full z-10">
+      <div className="container flex items-center justify-between">
+        <button
+          className="bg-blue-500 text-white p-2 rounded-full shadow-lg"
+          onClick={toggleMenu}
+        >
+          Menu
+        </button>
+        <nav className="space-x-4 flex items-end">
           {MENU_ITEMS.map((item) => (
             <span
               key={item.path}
@@ -29,12 +34,6 @@ const Header: React.FC<HeaderProps> = ({ toggleMenu }) => {
               {item.name}
             </span>
           ))}
-          <button
-            className="lg:hidden bg-blue-500 text-white p-2 rounded-full shadow-lg ml-4"
-            onClick={toggleMenu}
-          >
-            Menu
-          </button>
         </nav>
       </div>
     </header>
