@@ -3,7 +3,7 @@
 import "./globals.css";
 import LeftMenu from "./components/layout/leftMenu";
 import Header from "./components/layout/header";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useMediaQuery } from "react-responsive";
 import { ContainerProvider } from "../../context/containerContext";
 
@@ -13,7 +13,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const isMdOrSmaller = useMediaQuery({ query: "(max-width: 768px)" });
+  const [isMdOrSmaller, setIsMdOrSmaller] = useState(false);
+
+  const mediaQuery = useMediaQuery({ query: "(max-width: 768px)" });
+
+  useEffect(() => {
+    setIsMdOrSmaller(mediaQuery);
+  }, [mediaQuery]);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
