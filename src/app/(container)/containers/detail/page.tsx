@@ -1,31 +1,34 @@
 "use client";
 
+import React, { useEffect } from "react";
 import { useRouter } from "next/navigation";
-import React, { useEffect, useState } from "react";
+import { ContainerDetailTypes } from "../../../../../types/containers";
+import { useContainerStore } from "../../../../../store/conatinerStore";
 
-interface Container {
-  id: string;
-  name: string;
-  status: string;
-  createdAt: string;
-  imageName: string;
-}
-
-const ContainerDetail: React.FC = () => {
+const ContainerDetail = () => {
   const router = useRouter();
-  const [container, setContainer] = useState<Container | null>(null);
+  const { container, setContainer } = useContainerStore((state) => ({
+    container: state.container,
+    setContainer: state.setContainer,
+  }));
 
   useEffect(() => {
-    // 실제 API 호출 대신 임시 데이터 사용
-    const tempData: Container = {
-      id: "example_id",
-      name: "example_container",
-      status: "running",
-      createdAt: "2023-07-09T12:00:00Z",
-      imageName: "example_image",
-    };
-    setContainer(tempData);
+    if (!container) {
+      router.push("/");
+    } else {
+      fetchContainerDetails();
+    }
   }, []);
+
+  const fetchContainerDetails = async () => {
+    try {
+      const response = await fetch(`/api/containers?id=${container}`);
+      const data: ContainerDetailTypes = await response.json();
+      setContainer(data);
+    } catch (error) {
+      console.error("Failed to fetch container details:", error);
+    }
+  };
 
   if (!container) {
     return <div>Loading...</div>;
