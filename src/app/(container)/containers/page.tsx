@@ -1,11 +1,12 @@
 "use client";
 
 import ContainerList from "@/app/components/containers/containerList";
-import { useState } from "react";
-import { CONTAINER_LIST_DATA } from "../../../../data/containers";
+import { useEffect, useState } from "react";
+import axios from "axios";
+import { Container } from "../../../../types/containers";
 
 const Home = () => {
-  const [containers, setContainers] = useState(CONTAINER_LIST_DATA);
+  const [containers, setContainers] = useState<Container[]>([]);
 
   const handleStart = (id: string) => {
     setContainers(
@@ -26,6 +27,20 @@ const Home = () => {
   const handleDelete = (id: string) => {
     setContainers(containers.filter((container) => container.id !== id));
   };
+
+  const fetchData = async () => {
+    try {
+      const response = await axios.get("/api/docker");
+      console.log("Container Data >>>", response.data);
+      setContainers(response.data);
+    } catch (error) {
+      console.error("Error:", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
 
   return (
     <ContainerList
