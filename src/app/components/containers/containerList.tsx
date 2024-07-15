@@ -15,7 +15,7 @@ import React from "react";
 import { ContainerListProps } from "../../../../types/containers";
 import { FaPlay, FaStop, FaTrash } from "react-icons/fa";
 import { useContainer } from "../../../../context/containerContext";
-import { useContainerStore } from "../../../../store/conatinerStore";
+import { useContainerStore } from "../../../../store/containerStore";
 
 const ContainerList: React.FC<ContainerListProps> = ({
   containers,
