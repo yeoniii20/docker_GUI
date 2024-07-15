@@ -1,9 +1,21 @@
 "use client";
 
+// window
+// {
+//   "hosts": ["tcp://0.0.0.0:2375", "npipe://"]
+// }
+
+// macOS
+// {
+//   "hosts": ["tcp://0.0.0.0:2375", "unix:///var/run/docker.sock"]
+// }
+
 import { useRouter } from "next/navigation";
 import React from "react";
 import { ContainerListProps } from "../../../../types/containers";
 import { FaPlay, FaStop, FaTrash } from "react-icons/fa";
+import { useContainer } from "../../../../context/containerContext";
+import { useContainerStore } from "../../../../store/conatinerStore";
 
 const ContainerList: React.FC<ContainerListProps> = ({
   containers,
@@ -12,9 +24,12 @@ const ContainerList: React.FC<ContainerListProps> = ({
   onDelete,
 }) => {
   const router = useRouter();
+  // const { setContainer } = useContainer();
+  const setContainer = useContainerStore((state) => state.setContainer);
 
-  const handleCardClick = (id: string) => {
-    router.push(`/containers/${id}`);
+  const handleCardClick = (container: any) => {
+    setContainer(container);
+    router.push("/containers/detail");
   };
 
   return (
@@ -39,7 +54,7 @@ const ContainerList: React.FC<ContainerListProps> = ({
                 className="px-2 py-1 text-white bg-green-500 rounded-full flex items-center space-x-1 hover:bg-green-600"
               >
                 <FaPlay />
-                <span>Start</span>
+                <div>Start</div>
               </button>
               <button
                 onClick={(e) => {
@@ -49,7 +64,7 @@ const ContainerList: React.FC<ContainerListProps> = ({
                 className="px-2 py-1 text-white bg-yellow-500 rounded-full flex items-center space-x-1 hover:bg-yellow-600"
               >
                 <FaStop />
-                <span>Stop</span>
+                <div>Stop</div>
               </button>
               <button
                 onClick={(e) => {
@@ -59,7 +74,7 @@ const ContainerList: React.FC<ContainerListProps> = ({
                 className="px-2 py-1 text-white bg-red-500 rounded-full flex items-center space-x-1 hover:bg-red-600"
               >
                 <FaTrash />
-                <span>Delete</span>
+                <div>Delete</div>
               </button>
             </div>
           </div>
