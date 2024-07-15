@@ -3,7 +3,7 @@
 import React, { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { ContainerDetailTypes } from "../../../../../types/containers";
-import { useContainerStore } from "../../../../../store/conatinerStore";
+import { useContainerStore } from "../../../../../store/containerStore";
 
 const ContainerDetail = () => {
   const router = useRouter();
