@@ -20,7 +20,7 @@ const ContainerDetail = () => {
     } else {
       fetchContainerDetails(container.id);
     }
-  }, [container]);
+  }, []);
 
   const fetchContainerDetails = async (id: string) => {
     try {
