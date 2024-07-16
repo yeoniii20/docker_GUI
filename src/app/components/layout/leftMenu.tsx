@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import { MENU_ITEMS } from "../../../../data/common";
 
@@ -12,6 +12,11 @@ interface LeftMenuProps {
 const LeftMenu: React.FC<LeftMenuProps> = ({ isOpen, isMdOrSmaller }) => {
   const router = useRouter();
   const pathname = usePathname();
+  const [activePath, setActivePath] = useState<string>(pathname);
+
+  useEffect(() => {
+    setActivePath(pathname);
+  }, [pathname]);
 
   const navigateTo = (path: string) => {
     router.push(path);
@@ -19,9 +24,9 @@ const LeftMenu: React.FC<LeftMenuProps> = ({ isOpen, isMdOrSmaller }) => {
 
   const isActive = (path: string) => {
     if (path === "/") {
-      return pathname === "/";
+      return activePath === "/";
     }
-    return pathname.startsWith(path);
+    return activePath.startsWith(path);
   };
 
   return (

@@ -4,7 +4,6 @@ import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import { ContainerDetailTypes } from "../../../../../types/containers";
 import { FaSync } from "react-icons/fa";
-import { CONTAINER_DETAIL_DATA } from "../../../../../data/containers";
 
 export default function ContainerDetail({
   params,
@@ -14,13 +13,23 @@ export default function ContainerDetail({
   const router = useRouter();
   const [container, setContainer] = useState<ContainerDetailTypes | null>(null);
 
+  const fetchContainerDetails = async () => {
+    try {
+      const response = await fetch(`/api/docker/containers/${params.slug}`);
+      const data: ContainerDetailTypes = await response.json();
+      setContainer(data);
+    } catch (error) {
+      console.error("Failed to fetch container details:", error);
+    }
+  };
+
   const refreshData = () => {
-    setContainer(CONTAINER_DETAIL_DATA);
+    fetchContainerDetails();
   };
 
   useEffect(() => {
-    setContainer(CONTAINER_DETAIL_DATA);
-  }, []);
+    fetchContainerDetails();
+  }, [params.slug]);
 
   if (!container) {
     return <div>Loading...</div>;
