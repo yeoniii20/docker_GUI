@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { ContainerDetailTypes } from "../../../../../types/containers";
 import { useContainerStore } from "../../../../../store/containerStore";
@@ -12,25 +12,29 @@ const ContainerDetail = () => {
     setContainer: state.setContainer,
   }));
 
+  const [loading, setLoading] = useState(true);
+
   useEffect(() => {
-    if (!container) {
+    if (!container || !container.id) {
       router.push("/");
     } else {
-      fetchContainerDetails();
+      fetchContainerDetails(container.id);
     }
-  }, []);
+  }, [container]);
 
-  const fetchContainerDetails = async () => {
+  const fetchContainerDetails = async (id: string) => {
     try {
-      const response = await fetch(`/api/containers?id=${container}`);
+      const response = await fetch(`/api/containers?id=${id}`);
       const data: ContainerDetailTypes = await response.json();
       setContainer(data);
+      setLoading(false);
     } catch (error) {
       console.error("Failed to fetch container details:", error);
+      setLoading(false);
     }
   };
 
-  if (!container) {
+  if (loading || !container) {
     return <div>Loading...</div>;
   }
 
